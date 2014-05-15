@@ -2,11 +2,12 @@
   <h1>Welcome to Glitter!</h1>
 </div>
 
-<div class="container">
-  <h1><a href="/create">Create New Account:</a></h1>
-  <h3><%= @message%></h3>
-</div>
-<%if session[:user_id]==nil %>
+<body>
+  <%if session[:user_id]==nil %>
+    <div class="container">
+      <h1><a href="/create">Create New Account:</a></h1>
+      <h3><%= @message%></h3>
+    </div>
 
     <form id="login" action="/" method="post">
       <h3> Log in below: </h3>
@@ -16,6 +17,6 @@
       <br>
       <input type="submit" value="Login">
     </form>
-<%else%>
-  <%yield%>
-<%end%>
+  <%else%>
+
+  <%end%>
