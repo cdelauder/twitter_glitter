@@ -22,3 +22,8 @@ post '/create' do
   @user = User.create(params[:user])
   redirect '/?message=account%20created'
 end
+
+post '/logout' do
+  session.clear
+  redirect '/'
+end
