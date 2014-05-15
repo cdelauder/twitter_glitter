@@ -1,0 +1,16 @@
+<div class="container">
+  <h1>Welcome to Glitter!</h1>
+</div>
+
+  <%if session[:user_id]==nil %>
+    <h3> Log in below: </h3>
+      <form action="/" method="post">
+        <input type="text" name="username" placeholder="username">
+        <input type="password" name="password" placeholder="password">
+        <input type="submit" value="Login">
+      </form>
+  <%else%>
+    <%yield%>
+  <%end%>
+
+
