@@ -29,6 +29,11 @@ post '/logout' do
   redirect '/'
 end
 
+post '/tweet' do
+  Tweet.create(content: params[:tweet], user_id: session[:user_id] )
+  redirect '/'
+end
+
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user
