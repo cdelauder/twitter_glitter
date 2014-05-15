@@ -4,6 +4,15 @@ get '/' do
   erb :index
 end
 
+post '/' do
+  @user = User.where(username: params[:username], password: params[:password]).first
+  if @user
+    session[:user_id]=@user.id
+    redirect '/'
+  else
+    erb :error
+  end
+end
 
 get '/create' do
   erb :create
