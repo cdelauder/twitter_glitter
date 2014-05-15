@@ -27,3 +27,8 @@ post '/logout' do
   session.clear
   redirect '/'
 end
+
+post '/tweet' do
+  Tweet.create(content: params[:tweet], user_id: session[:user_id] )
+  redirect '/'
+end
