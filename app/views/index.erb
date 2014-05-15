@@ -18,5 +18,11 @@
       <input type="submit" value="Login">
     </form>
   <%else%>
-
+  <div class="createtweet">
+    <h3> Create a tweet! </h3>
+    <form id="createtweet" action="/tweet" method="post">
+      <input type="text" name="tweet" placeholder="Enter your tweet here">
+      <input type="submit" value="Submit Tweet">
+    </form>
+  </div>
   <%end%>
