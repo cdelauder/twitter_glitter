@@ -21,7 +21,12 @@ end
 
 post '/create' do
   @user = User.create(params[:user])
-  redirect '/?message=account%20created'
+  if User.last == nil
+    @message = @user.errors.full_messages[0]
+  else
+    @message = "Account created"
+  end
+  redirect "/?#{@message}"
 end
 
 post '/logout' do
