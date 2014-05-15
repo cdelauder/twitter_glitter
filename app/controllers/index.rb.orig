@@ -23,11 +23,7 @@ post '/create' do
   redirect '/?message=account%20created'
 end
 
-post '/logout' do
-  session.clear
-  redirect '/'
-end
-
+<<<<<<< HEAD
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user
@@ -38,4 +34,9 @@ get '/:profile' do
 end
 
 post '/:profile/' do
+=======
+post '/logout' do
+  session.clear
+  redirect '/'
+>>>>>>> b21c30a2896cfbae250f85c55fa9ac8db0ee615a
 end
