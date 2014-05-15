@@ -5,11 +5,15 @@
 <h3>Location: <%= @user.location %></h3>
 
 <% if @user.tweets %>
-  <% @user.tweets do |tweet| %>
-  <h5><%= tweet.tweet %></h5>
-  <h5><%= tweet.updated_at %></h5>
-  <br>
+  <% @user.tweets.each do |tweet| %>
+  <h5><%= tweet.content %></h5>
+  <h7><%= tweet.updated_at %></h7>
   <% end %>
 <% else %>
   <h5>You have no tweets</h5>
 <% end %>
+
+
+<a href="/<%=@user.name %>/following">Following</a>
+
+<a href="/<%=@user.name %>/follows">Followers</a>
