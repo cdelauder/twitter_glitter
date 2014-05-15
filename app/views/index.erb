@@ -2,3 +2,21 @@
   <h1>Welcome to Glitter!</h1>
 </div>
 
+<body>
+  <%if session[:user_id]==nil %>
+    <div class="container">
+      <h1><a href="/create">Create New Account:</a></h1>
+      <h3><%= @message%></h3>
+    </div>
+
+    <form id="login" action="/" method="post">
+      <h3> Log in below: </h3>
+      <input type="text" name="username" placeholder="username">
+      <br>
+      <input type="password" name="password" placeholder="password">
+      <br>
+      <input type="submit" value="Login">
+    </form>
+  <%else%>
+
+  <%end%>
