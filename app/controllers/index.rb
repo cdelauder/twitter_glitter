@@ -1,5 +1,6 @@
 get '/' do
   # Look in app/views/index.erb
+  @user = User.find(session[:user_id]) if session[:user_id] != nil
   @message = params[:message]
   erb :index
 end

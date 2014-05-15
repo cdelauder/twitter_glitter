@@ -3,3 +3,13 @@
 <h3>E-Mail: <%= @user.email %></h3>
 <h3>About Me: <%= @user.oneliner %></h3>
 <h3>Location: <%= @user.location %></h3>
+
+<% if @user.tweets %>
+  <% @user.tweets do |tweet| %>
+  <h5><%= tweet.tweet %></h5>
+  <h5><%= tweet.updated_at %></h5>
+  <br>
+  <% end %>
+<% else %>
+  <h5>You have no tweets</h5>
+<% end %>
