@@ -62,9 +62,6 @@ get '/:profile' do
   end
 end
 
-post '/:profile' do
-end
-
 get '/:username/following' do
   @user = User.find_by_username(params[:username])
   erb :following
@@ -74,4 +71,8 @@ get '/:username/followers' do
   @user = User.find_by_username(params[:username])
   @followers = followers(@user)
   erb :followers
+
+post '/:username/favorites' do
+  @profileuser= User.where(username: params[:username]).first
+  @favorites= Tweet.where(user_id: @profileuser.id)
 end
