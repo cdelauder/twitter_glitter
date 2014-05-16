@@ -22,6 +22,14 @@
       <h1><a href="/create">Create New Account</a></h1>
     </div>
   <%else%>
+
+  <div class="container">
+    <form action='/tweet' method="post">
+      <input type="text" maxlength="140" name="tweet" placeholder="tweet">
+      <input type="submit" value="Gleet">
+    </form>
+  </div>
+
   <% if @user.follows.any? %>
   <div class="container">
     <h3> Your twitter feed </h3>
