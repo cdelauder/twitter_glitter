@@ -3,10 +3,10 @@
 </div>
 
 <body>
+  <h3><%= session[:message] %></h3>
   <%if session[:user_id]==nil %>
     <div class="container">
       <h1><a href="/create">Create New Account:</a></h1>
-      <h3><%= @message%></h3>
     </div>
 
     <form id="login" action="/" method="post">
