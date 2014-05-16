@@ -13,7 +13,14 @@
   <h5>You have no tweets</h5>
 <% end %>
 
+<% unless current_user == @user %>
+  <% unless following?(@user) %>
+    <form action="/<%=@user.username %>" method="post">
+      <input type="submit" value="+ Follow">
+    </form>
+  <% end %>
+<% end %>
+<br>
+<a href="/<%=@user.username %>/following">Following</a>
 
-<a href="/<%=@user.name %>/following">Following</a>
-
-<a href="/<%=@user.name %>/follows">Followers</a>
+<a href="/<%=@user.username %>/follows">Followers</a>
