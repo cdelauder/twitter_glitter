@@ -52,6 +52,17 @@ post '/search' do
   erb :results
 end
 
+get '/update' do
+  erb :update
+end
+
+put '/update' do
+  user = User.find(session[:user_id])
+  user.update_attributes(params[:user])
+  user.save
+  redirect "/#{params[:username]}"
+end
+
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user

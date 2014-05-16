@@ -31,7 +31,7 @@
   </div>
 
   <% if @user.follows.any? %>
-  <div class="container">
+  <div class="container" id="feed">
     <h3> Your twitter feed </h3>
     <% @sorted_feed.each do |tweet| %>
     <a href="/<%= tweet.user.username%>"><img src='<%= tweet.user.gravatar_url %>' id="gravatar"></a>
