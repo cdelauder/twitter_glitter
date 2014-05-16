@@ -11,12 +11,17 @@
 </head>
 
 <body>
-  <%if session[:user_id] %>
-
-    <form action="/logout" method="post" class="message">
-      <input type="submit" value="Logout">
-    </form>
-  <%end%>
+  <div class="navbar">
+    <%if session[:user_id] %>
+      <a href="/<%= User.find(session[:user_id]).username %>"><img src='<%= User.find(session[:user_id]).gravatar_url %>' id="profile_button"> <%=User.find(session[:user_id]).username %></a>
+      <form action="/logout" method="post" class="message" id="logout">
+        <input type="submit" value="Logout">
+      </form>
+    <%end%>
+  <div class="message">
+    <%= erb :search %>
+  </div>
+</div>
   <%= yield %>
 </body>
 </html>

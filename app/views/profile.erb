@@ -8,7 +8,7 @@
 </div>
 <div class="container">
 
-  <% if @user.tweets %>
+  <% if @user.tweets.length > 0 %>
     <% @user.tweets.each do |tweet| %>
     <h4 id="tweet"><%= tweet.content %><form action="/<%=@user.username%>/favorites" method="post">
     <input type="hidden" name="tweet_id" value="<%=tweet.id%>">

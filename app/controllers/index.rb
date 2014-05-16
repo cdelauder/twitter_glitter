@@ -46,6 +46,12 @@ post '/tweet' do
   redirect '/'
 end
 
+post '/search' do
+  query = h(params[:search])
+  search(query)
+  erb :results
+end
+
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user
