@@ -1,5 +1,6 @@
 <div class="container">
   <h1><%= @user.name %>'s Profile:</h1>
+  <img src='<%= @user.gravatar_url %>' id="gravatar">
   <h3>Name: <%= @user.name %></h3>
   <h3>E-Mail: <%= @user.email %></h3>
   <h3>About Me: <%= @user.oneliner %></h3>

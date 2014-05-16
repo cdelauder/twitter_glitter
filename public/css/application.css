@@ -63,11 +63,15 @@ input {
     border-radius: 7px;
     background-color: white;
     background: rgba(255, 255, 255, 0.6);
-  }  
+  }
 
   #id {
     width: 50%;
   }
+  #gravatar {
+    height: 3.0em;
+  }
+
   * {
     font-size: 1.25em;
   }
@@ -93,7 +97,11 @@ input {
   }
   #id {
     width: 60%;
-  }  
+  }
+
+  #gravatar {
+    height: 4.0em;
+  }
 
   * {
     font-size: 1.5em;
@@ -117,7 +125,7 @@ input {
     border-radius: 7px;
     background-color: white;
     background: rgba(255, 255, 255, 0.6);
-  }  
+  }
 
   #id {
     width: 80%;

@@ -1,4 +1,7 @@
 class User < ActiveRecord::Base
+  include Gravtastic
+  gravtastic
+
   has_many :tweets
   has_many :follows
   belongs_to :favorites
