@@ -7,6 +7,7 @@ get '/' do
 end
 
 post '/' do
+  session[:message] = ""
   @user = User.where(username: params[:username], password: params[:password]).first
   if @user
     session[:user_id]=@user.id
@@ -22,7 +23,13 @@ end
 
 post '/create' do
   @user = User.create(params[:user])
-  redirect '/?message=account%20created'
+  if @user.id == nil
+    @message = @user.errors.full_messages[0]
+  else
+    @message = "Account created"
+  end
+  session[:message] = @message
+  redirect "/?#{@message}"
 end
 
 post '/logout' do
