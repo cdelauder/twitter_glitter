@@ -67,9 +67,6 @@ get '/:profile' do
   end
 end
 
-post '/:profile' do
-end
-
 get '/:username/following' do
   @user = User.find_by_username(params[:username])
   erb :following
@@ -79,4 +76,14 @@ get '/:username/followers' do
   @user = User.find_by_username(params[:username])
   @followers = followers(@user)
   erb :followers
+end
+
+post '/:username/favorites' do
+  Favorite.create(user_id: session[:user_id], tweet_id: params[:tweet_id] )
+  redirect "/#{params[:username]}"
+end
+
+get '/:username/favorites' do
+  @user_favorites=Favorite.where(user_id: session[:user_id])
+  erb :favorites
 end

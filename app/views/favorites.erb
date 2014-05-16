@@ -1,0 +1,6 @@
+<h1> Your favorite tweets </h1>
+
+<% @user_favorites.each do |favorite| %>
+  <h4><%= User.find(Tweet.find(favorite.tweet_id).user_id).name %> tweets: <%= Tweet.find(favorite.tweet_id).content %></h4>
+  <h2></h2>
+  <% end %>
