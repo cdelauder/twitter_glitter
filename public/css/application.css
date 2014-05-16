@@ -9,6 +9,29 @@ body {
 
 }
 
+#profile_button {
+  float: left;
+  margin-left: 10%;
+  text-align: bottom;
+  margin-top: .1em;
+  display: inline-block;
+}
+
+#logout {
+  float: right;
+  margin-right: 10%;
+  margin-top: 1em;
+  display: inline-block;
+}
+
+.message {
+  text-align: center;
+}
+
+.navbar {
+  background-color:
+}
+
 a {
   text-decoration: none;
   color: #E93A90;
@@ -37,16 +60,20 @@ input[type=submit] {
   background: rgba(255, 255, 255, 0.6);
 }
 
+#search_results {
+  text-align: left;
+}
+
+.title {
+  text-align: center;
+}
+
 input {
   margin: 1%;
 }
 
 .favorite {
   font-color: black;
-}
-
-.message {
-  text-align: center;
 }
 
 #tweet {

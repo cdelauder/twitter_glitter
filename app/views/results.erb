@@ -1,15 +1,15 @@
-<div class="container">
-  <h3>Users</h3>
+<div class="container" id="search_results">
+  <h3 class="title">Users</h3>
   <% @user_results.pluck(:username).each do |user| %>
-  <img src='<%= User.find_by_username(user).gravatar_url %>' id="gravatar">
-  <a href="/<%= user %>"><%= user %></a><br>
+  <a href="/<%= user %>"><img src='<%= User.find_by_username(user).gravatar_url %>' id="gravatar">
+  <%= user %></a><br>
   <% end %>
 
 
-  <h3>Tweets</h3>
+  <h3 class="title">Tweets</h3>
 
   <% @tweet_results.pluck(:content).each do |tweet| %>
-  <%= tweet %><br>
+  <a href="/<%= User.find(Tweet.find_by_content(tweet).user_id).username %>"><img src='<%= User.find(Tweet.find_by_content(tweet).user_id).gravatar_url %>' id="gravatar"> <%= User.find(Tweet.find_by_content(tweet).user_id).username %> --- "<%= tweet %>"<br>
   <% end %>
 
 
