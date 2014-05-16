@@ -13,7 +13,7 @@
 <body>
   <%if session[:user_id] %>
 
-    <form action="/logout" method="post">
+    <form action="/logout" method="post" class="message">
       <input type="submit" value="Logout">
     </form>
   <%end%>

@@ -36,6 +36,10 @@ input {
   font-color: black;
 }
 
+.message {
+  text-align: center;
+}
+
 @media screen and (max-width: 1000px) {
   body {
     width: 95%;
