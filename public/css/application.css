@@ -45,9 +45,10 @@ input {
   word-wrap: break-word;
 }
 
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 1100px) {
   body {
     width: 95%;
+    height: 100%;
     font-family: 'Miniver', cursive;
     background-image:url("/../images/font.jpg");
     background-size: 100%;
@@ -56,7 +57,7 @@ input {
   .container {
     margin: 2% auto;
     text-align: center;
-    width: 55%;
+    width: 85%;
     padding: 2%;
     /*border: 1px solid black;*/
     border-radius: 7px;
@@ -67,10 +68,14 @@ input {
   #id {
     width: 50%;
   }
+  * {
+    font-size: 1.25em;
+  }
 
 @media screen and (max-width: 800px) {
   body {
     width: 100%;
+    height: 100%;
     font-family: 'Miniver', cursive;
     background-image:url("/../images/font-medium.png");
     background-size: 100%;
@@ -79,7 +84,7 @@ input {
   .container {
     margin: 2% auto;
     text-align: center;
-    width: 65%;
+    width: 75%;
     padding: 2%;
     /*border: 1px solid black;*/
     border-radius: 7px;
@@ -90,9 +95,14 @@ input {
     width: 60%;
   }  
 
-@media screen and (max-width: 500px) {
+  * {
+    font-size: 1.5em;
+  }
+
+@media screen and (max-width: 600px) {
   body {
     width: 100%;
+    height: 100%;
     font-family: 'Miniver', cursive;
     background-image:url("/../images/font-small.png");
     background-size: 100%;
