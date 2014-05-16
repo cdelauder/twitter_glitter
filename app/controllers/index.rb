@@ -6,6 +6,7 @@ get '/' do
 end
 
 post '/' do
+  session[:message] = ""
   @user = User.where(username: params[:username], password: params[:password]).first
   if @user
     session[:user_id]=@user.id
