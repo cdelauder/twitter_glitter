@@ -50,9 +50,6 @@ post '/:profile' do
   redirect "/#{params[:profile]}"
 end
 
-
-
-
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user
@@ -71,8 +68,10 @@ get '/:username/followers' do
   @user = User.find_by_username(params[:username])
   @followers = followers(@user)
   erb :followers
+end
 
 post '/:username/favorites' do
   @profileuser= User.where(username: params[:username]).first
   @favorites= Tweet.where(user_id: @profileuser.id)
+  erb :following
 end
