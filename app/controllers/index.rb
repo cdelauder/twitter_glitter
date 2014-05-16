@@ -2,6 +2,9 @@ get '/' do
   # Look in app/views/index.erb
   session[:user_id] ||= nil
   @user = User.find(session[:user_id]) if session[:user_id] != nil
+  if session[:user_id]
+    get_feed
+  end
   @message = params[:message]
   erb :index
 end
@@ -66,6 +69,18 @@ post '/:profile' do
   redirect "/#{params[:profile]}"
 end
 
+get '/:username/favorites' do
+  @user_favorites=Favorite.where(user_id: session[:user_id])
+  erb :favorites
+end
+
+delete '/favorites' do
+# User.find(session[:id]).favorites.where(tweet_id: params[:tweet_id]).destroy_all
+# This code on 71 works however is not optimal because it searches thru the join table.
+Favorite.where(user_id: session[:user_id], tweet_id: params[:tweet_id]).first.destroy
+@username=User.find(session[:user_id]).name
+redirect "/#{@username}/favorites"
+end
 
 delete '/:following' do
   user = User.find(session[:user_id]).id
@@ -91,7 +106,5 @@ post '/:username/favorites' do
   redirect "/#{params[:username]}"
 end
 
-get '/:username/favorites' do
-  @user_favorites=Favorite.where(user_id: session[:user_id])
-  erb :favorites
-end
+
+

@@ -23,11 +23,14 @@
     </div>
   <%else%>
   <div class="container">
-    <h3> Create a tweet! </h3>
-    <form id="createtweet" action="/tweet" method="post">
-      <input type="text" name="tweet" placeholder="Enter your tweet here" maxlength="140">
-      <input type="submit" value="Submit Tweet">
-    </form>
+    <h3> Your twitter feed </h3>
+    <% @sorted_feed.each do |tweet| %>
+    <a href="/<%= tweet.user.username%>"><img src='<%= tweet.user.gravatar_url %>' id="gravatar"></a>
+    <a href="/<%= tweet.user.username%>"><%= tweet.user.username%>: </a>
+    <%= tweet.content%>
+    <%= tweet.created_at%>
+    <br>
+    <% end %>
   </div>
   <div class="container">
     <a href="/<%=@user.username %>">Profile</a>
