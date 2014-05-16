@@ -1,4 +1,3 @@
-
 get '/' do
   # Look in app/views/index.erb
   session[:user_id] ||= nil
@@ -50,6 +49,14 @@ post '/:profile' do
   Follow.create(user_id: user, follow_id: follow_id)
   redirect "/#{params[:profile]}"
 end
+
+delete '/:following' do
+  user = User.find(session[:user_id]).id
+  following = User.find_by_name(params[:following]).id
+  Follow.where(user_id: user, follow_id: following).first.destroy
+  redirect "/#{params[:following]}"
+end
+
 
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
