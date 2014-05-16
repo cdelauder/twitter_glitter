@@ -22,12 +22,14 @@ helpers do
   end
 
   def following?(user)
-    current_user.follows.each do |follow|
-      if user.id == follow.follow_id
-        return true
+    if current_user
+      current_user.follows.each do |follow|
+        if user.id == follow.follow_id
+          return true
+        end
       end
-    end
-    return false
+      return false
+  end
   end
 
   def following(follow)

@@ -1,0 +1,8 @@
+<%if session[:user_id]!=nil %>
+  <div class="container">
+    <form action='/tweet' method="post">
+      <input type="text" maxlength="140" name="tweet" placeholder="tweet">
+      <input type="submit" value="Gleet">
+    </form>
+  </div>
+<%end%>
