@@ -50,7 +50,12 @@ post '/:profile' do
   redirect "/#{params[:profile]}"
 end
 
-
+delete '/:following' do
+  user = User.find(session[:user_id]).id
+  following = User.find_by_name(params[:following]).id
+  Follow.where(user_id: user, follow_id: following).first.destroy
+  redirect "/#{params[:following]}"
+end
 
 
 get '/:profile' do

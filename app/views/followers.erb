@@ -17,6 +17,11 @@
     <form action="/<%=@user.username %>" method="post">
       <input type="submit" value="+ Follow">
     </form>
+  <% else %>
+    <form action="/<%=@user.username %>" method="post">
+      <input type="hidden" name="_method" value="delete">
+      <input type="submit" value="Unfollow">
+    </form>
   <% end %>
 <% end %>
 <br>
