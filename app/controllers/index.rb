@@ -11,6 +11,7 @@ post '/' do
   @user = User.where(username: params[:username], password: params[:password]).first
   if @user
     session[:user_id]=@user.id
+    p @user.username
     redirect '/'
   else
     erb :error
@@ -42,22 +43,6 @@ post '/tweet' do
   redirect '/'
 end
 
-post '/:profile' do
-  follow_id = User.find_by_username(params[:profile]).id
-  p session[:user_id]
-  user = User.find(session[:user_id]).id
-  Follow.create(user_id: user, follow_id: follow_id)
-  redirect "/#{params[:profile]}"
-end
-
-delete '/:following' do
-  user = User.find(session[:user_id]).id
-  following = User.find_by_name(params[:following]).id
-  Follow.where(user_id: user, follow_id: following).first.destroy
-  redirect "/#{params[:following]}"
-end
-
-
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
   if @user
@@ -66,6 +51,23 @@ get '/:profile' do
     erb :error2
   end
 end
+
+post '/:profile' do
+  follow_id = User.find_by_username(params[:profile]).id
+  p session[:user_id]
+  user = User.find(session[:user_id]).id
+  Follow.create(user_id: user, follow_id: follow_id)
+  redirect "/#{params[:profile]}"
+end
+
+
+delete '/:following' do
+  user = User.find(session[:user_id]).id
+  following = User.find_by_name(params[:following]).id
+  Follow.where(user_id: user, follow_id: following).first.destroy
+  redirect "/#{params[:following]}"
+end
+
 
 get '/:username/following' do
   @user = User.find_by_username(params[:username])

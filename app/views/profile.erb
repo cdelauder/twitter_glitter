@@ -1,36 +1,43 @@
-<h1><%= @user.name %>'s Profile:</h1>
-<h3>Name: <%= @user.name %></h3>
-<h3>E-Mail: <%= @user.email %></h3>
-<h3>About Me: <%= @user.oneliner %></h3>
-<h3>Location: <%= @user.location %></h3>
-
-<% if @user.tweets %>
-  <% @user.tweets.each do |tweet| %>
-  <h4><%= tweet.content %><form action="/<%=@user.username%>/favorites" method="post">
-  <input type="hidden" name="tweet_id" value="<%=tweet.id%>">
-  <input type="submit" value="Favorite"></h4>
-  </form>
+<div class="container">
+  <h1><%= @user.name %>'s Profile:</h1>
+  <h3>Name: <%= @user.name %></h3>
+  <h3>E-Mail: <%= @user.email %></h3>
+  <h3>About Me: <%= @user.oneliner %></h3>
+  <h3>Location: <%= @user.location %></h3>
 </div>
-  <% end %>
-<% else %>
-  <h5>You have no tweets</h5>
-<% end %>
+<div class="container">
 
-<% unless current_user == @user %>
-  <% unless following?(@user) %>
-    <form action="/<%=@user.username %>" method="post">
-      <input type="submit" value="+ Follow">
+  <% if @user.tweets %>
+    <% @user.tweets.each do |tweet| %>
+    <h4 id="tweet"><%= tweet.content %><form action="/<%=@user.username%>/favorites" method="post">
+    <input type="hidden" name="tweet_id" value="<%=tweet.id%>">
+    <input type="submit" value="Favorite"></h4>
     </form>
+
+    <% end %>
   <% else %>
-    <form action="/<%=@user.username %>" method="post">
-      <input type="hidden" name="_method" value="delete">
-      <input type="submit" value="Unfollow">
-    </form>
+
+    <h5>You have no tweets</h5>
   <% end %>
-<% end %>
-<br>
-<a href="/<%=@user.username %>/following">Following</a>
+</div>
+<div class="container">
+  <% unless current_user == @user %>
+    <% unless following?(@user) %>
+      <form action="/<%=@user.username %>" method="post">
+        <input type="submit" value="+ Follow">
+      </form>
+    <% else %>
+      <form action="/<%=@user.username %>" method="post">
+        <input type="hidden" name="_method" value="delete">
+        <input type="submit" value="Unfollow">
+      </form>
+    <% end %>
+  <% end %>
+  <br>
+  <a href="/<%=@user.username %>/following">Following</a>
 
-<a href="/<%=@user.username %>/followers">Followers</a>
+  <a href="/<%=@user.username %>/followers">Followers</a>
 
-<a href="/<%=@user.username %>/favorites">Favorite Tweets</a>
+  <a href="/<%=@user.username %>/favorites">Favorite Tweets</a>
+
+</div>
