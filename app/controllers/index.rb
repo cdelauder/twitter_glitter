@@ -2,7 +2,7 @@ get '/' do
   # Look in app/views/index.erb
   session[:user_id] ||= nil
   @user = User.find(session[:user_id]) if session[:user_id] != nil
-  if session[:user_id]
+  if session[:user_id] && current_user.follows.any?
     get_feed
   end
   @message = params[:message]
