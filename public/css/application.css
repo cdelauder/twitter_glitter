@@ -1,19 +1,41 @@
+body {
+  font-family: 'Miniver', cursive;
+  background-image:url("/../images/glitter.jpg");
+  background-size: 100%;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+a:visited {
+  color: black;
+}
+
 .container {
   margin: 20px auto;
   text-align: center;
   width: 400px;
   padding: 20px 20px 20px 20px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
+  border-radius: 7px;
+  background-color: white;
+  background: rgba(255, 255, 255, 0.6);
 }
 
+
+/*.content {
+  opacity: 1.0;
+}*/
+/*
 #login {
   display: inline-block;
   float: center;
-  float: top;
   border: 1px solid black;
   margin: 20px;
   padding: 20px;
-}
+}*/
 
 input {
   margin: 5px;
