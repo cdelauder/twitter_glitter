@@ -30,6 +30,11 @@ post '/logout' do
   redirect '/'
 end
 
+post '/tweet' do
+  Tweet.create(content: params[:tweet], user_id: session[:user_id] )
+  redirect '/'
+end
+
 post '/:profile' do
   follow_id = User.find_by_username(params[:profile]).id
   p session[:user_id]
@@ -39,10 +44,7 @@ post '/:profile' do
 end
 
 
-post '/tweet' do
-  Tweet.create(content: params[:tweet], user_id: session[:user_id] )
-  redirect '/'
-end
+
 
 get '/:profile' do
   @user = User.find_by_username(params[:profile])
