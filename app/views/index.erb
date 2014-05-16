@@ -22,12 +22,14 @@
       <h1><a href="/create">Create New Account</a></h1>
     </div>
   <%else%>
-  <div class="createtweet">
+  <div class="container">
     <h3> Create a tweet! </h3>
     <form id="createtweet" action="/tweet" method="post">
       <input type="text" name="tweet" placeholder="Enter your tweet here" maxlength="140">
       <input type="submit" value="Submit Tweet">
     </form>
   </div>
+  <div class="container"
     <a href="/<%= @user.username %>">Profile</a>
+  </div>
   <%end%>
