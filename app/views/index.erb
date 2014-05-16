@@ -22,6 +22,7 @@
       <h1><a href="/create">Create New Account</a></h1>
     </div>
   <%else%>
+  <% if @user.follows.any? %>
   <div class="container">
     <h3> Your twitter feed </h3>
     <% @sorted_feed.each do |tweet| %>
@@ -32,6 +33,7 @@
     <br>
     <% end %>
   </div>
+  <% end %>
   <div class="container">
     <a href="/<%=@user.username %>">Profile</a>
   </div>
