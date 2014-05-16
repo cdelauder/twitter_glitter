@@ -16,6 +16,9 @@ helpers do
     User.find(follow.follow_id)
   end
 
+  def followers(user)
+    Follow.where(follow_id: user.id)
+  end
 
 end
 
