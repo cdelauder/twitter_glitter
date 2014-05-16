@@ -1,5 +1,6 @@
 get '/' do
   # Look in app/views/index.erb
+  session[:user_id] ||= nil
   @user = User.find(session[:user_id]) if session[:user_id] != nil
   @message = params[:message]
   erb :index
@@ -25,9 +26,18 @@ post '/create' do
 end
 
 post '/logout' do
-  session.clear
+  session[:user_id] = nil
   redirect '/'
 end
+
+post '/:profile' do
+  follow_id = User.find_by_username(params[:profile]).id
+  p session[:user_id]
+  user = User.find(session[:user_id]).id
+  Follow.create(user_id: user, follow_id: follow_id)
+  redirect "/#{params[:profile]}"
+end
+
 
 post '/tweet' do
   Tweet.create(content: params[:tweet], user_id: session[:user_id] )
@@ -43,5 +53,10 @@ get '/:profile' do
   end
 end
 
-post '/:profile/' do
+post '/:profile' do
+end
+
+get '/:username/following' do
+  @user = User.find_by_username(params[:username])
+  erb :following
 end
