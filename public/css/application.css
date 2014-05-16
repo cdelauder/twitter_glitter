@@ -72,7 +72,7 @@ input {
   body {
     width: 100%;
     font-family: 'Miniver', cursive;
-    background-image:url("/../images/font.jpg");
+    background-image:url("/../images/font-medium.png");
     background-size: 100%;
     color: #E93A90;
   }
@@ -94,7 +94,7 @@ input {
   body {
     width: 100%;
     font-family: 'Miniver', cursive;
-    background-image:url("/../images/font.jpg");
+    background-image:url("/../images/font-small.png");
     background-size: 100%;
     color: #E93A90;
   }
