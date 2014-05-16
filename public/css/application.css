@@ -9,6 +9,10 @@ body {
 
 }
 
+#feed {
+  text-align: left;
+}
+
 #profile_button {
   float: left;
   margin-left: 10%;
