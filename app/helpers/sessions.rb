@@ -17,7 +17,11 @@ helpers do
   end
 
   def followers(user)
-    Follow.where(follow_id: user.id)
+    followers = Follow.where(follow_id: user.id)
+    followers = followers.map do |follower|
+      User.find(follower.user_id)
+    end
+    followers
   end
 
 end

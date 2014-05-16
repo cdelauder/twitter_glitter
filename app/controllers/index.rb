@@ -73,5 +73,5 @@ end
 get '/:username/followers' do
   @user = User.find_by_username(params[:username])
   @followers = followers(@user)
-  erb :following
+  erb :followers
 end
