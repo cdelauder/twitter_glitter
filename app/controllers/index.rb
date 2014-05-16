@@ -1,3 +1,4 @@
+
 get '/' do
   # Look in app/views/index.erb
   session[:user_id] ||= nil
@@ -71,7 +72,11 @@ get '/:username/followers' do
 end
 
 post '/:username/favorites' do
-  @profileuser= User.where(username: params[:username]).first
-  @favorites= Tweet.where(user_id: @profileuser.id)
-  erb :following
+  Favorite.create(user_id: session[:user_id], tweet_id: params[:tweet_id] )
+  redirect "/#{params[:username]}"
+end
+
+get '/:username/favorites' do
+  @user_favorites=Favorite.where(user_id: session[:user_id])
+  erb :favorites
 end

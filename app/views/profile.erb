@@ -6,8 +6,11 @@
 
 <% if @user.tweets %>
   <% @user.tweets.each do |tweet| %>
-  <h5><%= tweet.content %></h5>
-  <h7><%= tweet.updated_at %></h7>
+  <h4><%= tweet.content %><form action="/<%=@user.username%>/favorites" method="post">
+  <input type="hidden" name="tweet_id" value="<%=tweet.id%>">
+  <input type="submit" value="Favorite"></h4>
+  </form>
+</div>
   <% end %>
 <% else %>
   <h5>You have no tweets</h5>

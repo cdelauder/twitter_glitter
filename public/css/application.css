@@ -18,3 +18,7 @@
 input {
   margin: 5px;
 }
+
+.favorite {
+  font-color: black;
+}
