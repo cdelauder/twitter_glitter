@@ -1,6 +1,20 @@
 helpers do
   def current_user
-    User.find(session[:user_id])
+    if session[:user_id]
+      User.find(session[:user_id])
+    end
+  end
+
+  def get_feed
+    user = User.find(session[:user_id])
+    following_these_ids = user.follows.map {|follow| follow.follow_id}
+    if following_these_ids.any?
+      tweets_of_following = following_these_ids.map do |user_id|
+      Tweet.where(user_id: user_id)
+      end
+    end
+    @sorted_feed = tweets_of_following.flatten.sort_by &:created_at
+    @sorted_feed.reverse!
   end
 
   def following?(user)
