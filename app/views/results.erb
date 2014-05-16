@@ -1,0 +1,16 @@
+<div class="container">
+  <h3>Users</h3>
+  <% @user_results.pluck(:username).each do |user| %>
+  <img src='<%= User.find_by_username(user).gravatar_url %>' id="gravatar">
+  <a href="/<%= user %>"><%= user %></a><br>
+  <% end %>
+
+
+  <h3>Tweets</h3>
+
+  <% @tweet_results.pluck(:content).each do |tweet| %>
+  <%= tweet %><br>
+  <% end %>
+
+
+</div>

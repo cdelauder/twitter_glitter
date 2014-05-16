@@ -1,4 +1,8 @@
 helpers do
+  include Rack::Utils
+  alias_method :h, :escape_html
+
+
   def current_user
     User.find(session[:user_id])
   end
@@ -22,6 +26,13 @@ helpers do
       User.find(follower.user_id)
     end
     followers
+  end
+
+  def search(query)
+    @user_results = User.where("username LIKE ?", "%#{query}%")
+    p @user_results
+    @tweet_results = Tweet.where("content LIKE ?", "%#{query}%")
+    p @tweet_results
   end
 
 end
