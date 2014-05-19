@@ -1,34 +1,23 @@
+<%# this is really similar to app/views/following.rb %>
 <div class="container">
-  <h1><%= @user.name %>'s Profile:</h1>
-  <h3>Name: <%= @user.name %></h3>
-  <h3>E-Mail: <%= @user.email %></h3>
-  <h3>About Me: <%= @user.oneliner %></h3>
-  <h3>Location: <%= @user.location %></h3>
+  <%= render :profile_header %>
 
-  <% if @followers.any? %>
-    <% @followers.each do |follower| %>
-    <h5><%= follower.username %></h5>
+  <%= render :follower_names, method: :followers %>
+
+
+  <%# follower_names: %>
+
+  <%# this should really just be @user.followers %>
+  <% if @user.send(method).any? %>
+    <% @user.send(method).each do |user| %>
+      <h5><%= user.username %></h5>
     <% end %>
   <% else %>
     <h5>No one cares about you.</h5>
   <% end %>
 
-  <% unless current_user == @user %>
-    <% unless following?(@user) %>
-      <form action="/<%=@user.username %>" method="post">
-        <input type="submit" value="+ Follow">
-      </form>
-    <% else %>
-      <form action="/<%=@user.username %>" method="post">
-        <input type="hidden" name="_method" value="delete">
-        <input type="submit" value="Unfollow">
-      </form>
-    <% end %>
-  <% end %>
-  <br>
-  <a href="/<%=@user.username %>/following">Following</a>
 
-  <a href="/<%=@user.username %>/followers">Followers</a>
+  <%####################%>
 
-  <a href="/<%=@user.username %>/favorites">Favorites</a>
+  <%= render :follower_partial %>
 </div>

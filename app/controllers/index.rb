@@ -1,10 +1,5 @@
 get '/' do
   # Look in app/views/index.erb
-  session[:user_id] ||= nil
-  @user = User.find(session[:user_id]) if session[:user_id] != nil
-  if session[:user_id] && current_user.follows.any?
-    get_feed
-  end
   @message = params[:message]
   erb :index
 end
@@ -13,8 +8,7 @@ post '/' do
   session[:message] = ""
   @user = User.where(username: params[:username], password: params[:password]).first
   if @user
-    session[:user_id]=@user.id
-    p @user.username
+    session[:user_id] = @user.id
     redirect '/'
   else
     erb :error
@@ -32,6 +26,8 @@ post '/create' do
   else
     @message = "Account created"
   end
+  # you might be better off rendering instead of redirecting and setting the
+  # message in an instance variable instead of the session.
   session[:message] = @message
   redirect "/?#{@message}"
 end
@@ -47,8 +43,7 @@ post '/tweet' do
 end
 
 post '/search' do
-  query = h(params[:search])
-  search(query)
+  search(h(params[:search]))
   erb :results
 end
 
@@ -59,7 +54,7 @@ end
 put '/update' do
   user = User.find(session[:user_id])
   user.update_attributes(params[:user])
-  user.save
+  # user.save         update_attributes automatically saves.
   redirect "/#{params[:username]}"
 end
 
@@ -73,30 +68,26 @@ get '/:profile' do
 end
 
 post '/:profile' do
-  follow_id = User.find_by_username(params[:profile]).id
-  p session[:user_id]
-  user = User.find(session[:user_id]).id
-  Follow.create(user_id: user, follow_id: follow_id)
+  Follow.create(user_id: current_user,
+                follow_id: User.find_by_username(params[:profile]))
   redirect "/#{params[:profile]}"
 end
 
 get '/:username/favorites' do
-  @user_favorites=Favorite.where(user_id: session[:user_id])
+  @user_favorites = Favorite.where(user_id: session[:user_id])
   erb :favorites
 end
 
+# a more restful route would be delete '/favorites/:tweet_id'
 delete '/favorites' do
-# User.find(session[:id]).favorites.where(tweet_id: params[:tweet_id]).destroy_all
-# This code on 71 works however is not optimal because it searches thru the join table.
-Favorite.where(user_id: session[:user_id], tweet_id: params[:tweet_id]).first.destroy
-@username=User.find(session[:user_id]).name
-redirect "/#{@username}/favorites"
+  # This code works however is not optimal because it searches thru the join table.
+  Favorite.where(user_id: session[:user_id], tweet_id: params[:tweet_id]).first.destroy
+  redirect "/#{current_user.name}/favorites"
 end
 
 delete '/:following' do
-  user = User.find(session[:user_id]).id
-  following = User.find_by_name(params[:following]).id
-  Follow.where(user_id: user, follow_id: following).first.destroy
+  Follow.where(user_id: current_user, # ActiveRecord should intelligently know to use the ID in this case
+               follow_id: User.find_by_name(params[:following])).first.destroy
   redirect "/#{params[:following]}"
 end
 
@@ -108,7 +99,6 @@ end
 
 get '/:username/followers' do
   @user = User.find_by_username(params[:username])
-  @followers = followers(@user)
   erb :followers
 end
 

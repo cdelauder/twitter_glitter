@@ -1,3 +1,4 @@
+<%# this is really similar to app/views/followers.rb %>
 <div class="container">
   <h1><%= @user.name %>'s Profile:</h1>
   <h3>Name: <%= @user.name %></h3>
@@ -5,25 +6,25 @@
   <h3>About Me: <%= @user.oneliner %></h3>
   <h3>Location: <%= @user.location %></h3>
 
-  <% if @user.follows %>
+  <% if @user.follows.any? %>
     <% @user.follows.each do |follow| %>
-    <h5><%= following(follow).username %></h5>
+      <h5><%= follow.username %></h5>
     <% end %>
   <% else %>
     <h5>Aint following no body</h5>
   <% end %>
 
   <% unless current_user == @user %>
-    <% unless following?(@user) %>
-      <form action="/<%=@user.username %>" method="post">
+    <form action="/<%=@user.username %>" method="post">
+      <% unless following?(@user) %>
         <input type="submit" value="+ Follow">
-      </form>
+      <%# you should avoid using else with unless.
+          And by "avoid using" I mean "never use. Ever."  %>
       <% else %>
-          <form action="/<%=@user.username %>" method="post">
         <input type="hidden" name="_method" value="delete">
         <input type="submit" value="Unfollow">
-      </form>
-    <% end %>
+      <% end %>
+    </form>
   <% end %>
   <br>
   <a href="/<%=@user.username %>/following">Following</a>
